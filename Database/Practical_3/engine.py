@@ -4,7 +4,8 @@ from os import sep
 import time
 
 from simple_db import SimpleDatabase
-import sqlite3
+from help_center import help_center
+
 
 # def print_selected(header, rows):
 #     # header is a list of column names, rows is a list of rows
@@ -47,7 +48,7 @@ def print_selected(header, rows):
         
     print(line * 4, '+', sep = '')
     
-    
+# print the table of the database    
 def print_tables(names):
     line = '+' + '-' * 30
     print(line, '+', sep = '')
@@ -86,33 +87,7 @@ def run_engine():
         
         elif command == "help":
             print()
-            print("Welcome to our Help Center *⸜( •ᴗ• )⸝*")
-            print('''
-                へ　　　　　／|
-            　　/＼7　　　 ∠＿/
-            　 /　│　　 ／　／
-            　│　Z ＿,＜　／　　 /`ヽ
-            　│　　　　　ヽ　　 /　　〉
-            　 Y　　　　　`　 /　　/
-            　ｲ●　､　●　　⊂⊃〈　　/
-            　()　 へ　　　　|　＼〈
-            　　>ｰ ､_　 ィ　 │ ／／
-            　 / へ　　 /　ﾉ＜| ＼＼
-            　 ヽ_ﾉ　　(_／　 │／／
-            　　7　　　　　　　|／
-            　　＞―r￣￣`ｰ―＿
-                  ''')
-            print("Here are the commands you can use:")
-            print()
-            print("                            Commands                                                          Descriptions                                    ")   
-            print("1.   show tables                                                               --> show all tables & indexes in the database")
-            print("2.   copy <table_name> to <file_name>                                          --> copies table to a file")
-            print("3.   select <column_name> from <table_name> where <column_name> = <value>      --> selects rows from table")
-            print("4.   create index <column_name> on <table_name>                                --> creates index on a column")
-            print("5.   drop index <column_name> on <table_name>                                  --> drops index on a column")
-            print("6.   exit                                                                      --> exit the database")
-            print()
-            print("Tips: Do not forget that commands should end with ; symbol.")
+            help_center.help()
             
             
         elif command == "show tables":
@@ -122,7 +97,7 @@ def run_engine():
             name = []
             table_name = db.get_table_name()
             if table_name is None:
-                print("... no tables loaded ...")
+                print("Error: No tables loaded")
                 print("Tips: use 'copy <table_name> to <file_name>' to load a table")
             else:
                 index_names = db.get_index_name()            # get index name (list)
@@ -139,7 +114,7 @@ def run_engine():
             # words[0] should be copy, words[1] should be table name, etc.
             if len(words) != 4:
                 # we expect a particular number of words in this command
-                print("Incorrect command format")
+                print("Error: Incorrect command format")
                 continue
 
             table_name = words[1]
@@ -152,7 +127,7 @@ def run_engine():
             words = command.split() # breaks down command into words
             if len(words) != 8:
                 # we expect a particular number of words in this command
-                print("Incorrect command format")
+                print("Error: Incorrect command format")
                 continue
             
             table_name = words[3]
@@ -167,7 +142,7 @@ def run_engine():
             end = time.time()
             
             if len(header) == 0:
-                print("... no such table ...")
+                print("Error: No such table.")
             else:
                 print_selected(header, rows)
                 print("Time elapsed: ", round(1000*(end - start)), " ms")
@@ -184,11 +159,11 @@ def run_engine():
             
             # check if the column name is valid
             if col_name not in db.get_table_header():
-                print("Error: wrong column name")
+                print("Error: Wrong column name.")
                 
             # check if the index already exists
             elif col_name in db.get_index_name():
-                print("Error: index already exists")    
+                print("Error: Index already exists.")    
                 
             # create the index
             else:
@@ -205,11 +180,11 @@ def run_engine():
             
             # check if the column name is valid
             if col_name not in db.get_table_header():
-                print("Error: wrong column name")
+                print("Error: Wrong column name")
                 
             # check if the index is valid
             elif col_name not in db.get_index_name():
-                print("Error: index does not exist")
+                print("Error: Index does not exist")
             
             # drop the index
             else:
@@ -217,7 +192,7 @@ def run_engine():
                 print("Dropped index for", col_name)    
             
         else:
-            print("Unrecognized command!")
+            print("Error: Unrecognized command!")
 
         print() # empty line after each command
 
