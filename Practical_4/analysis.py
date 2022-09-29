@@ -1,4 +1,4 @@
-data_file = "movies.nt"
+data_file = "Practical_4/movies.nt"
 language_tag = "@en-US"
 line_ending = " ."
 query_person_name = "\"Guy Ritchie\""
@@ -73,6 +73,10 @@ def _parse_line(line):
 
 def _compute_stats():
     # ... you can add variables here ...
+    s_set = set()
+    p_set = set()
+    o_set = set()
+    
     
     # open file and read it line by line
     # assume utf8 encoding, ignore non-parseable characters
@@ -80,7 +84,13 @@ def _compute_stats():
         for line in f:
             # get subject, predicate and object
             s, p, o = _parse_line(line)
+            s_set.add(s)
+            p_set.add(p)
+            o_set.add(o)
             
+    s = len(s_set)
+    p = len(p_set)
+    o = len(o_set)
     ###########################################################
     # ... your code here ...
     # you can add functions and variables as needed;
@@ -89,6 +99,8 @@ def _compute_stats():
     # you can add print statements if you like, but only the
     # last four printed lines will be assessed;
     ###########################################################
+    
+    
     
     ###########################################################
     # n_triples -- number of distinct triples
@@ -102,13 +114,20 @@ def _compute_stats():
     #               director in one movie, producer in another, etc.)
     ###########################################################
     
-    return n_triples, n_people, n_top_actors, n_guy_jobs
+    
+    return s, p, o
+    # return n_triples, n_people, n_top_actors, n_guy_jobs
 
     
 if __name__ == "__main__":
-    n_triples, n_people, n_top_actors, n_guy_jobs = _compute_stats()
+    # n_triples, n_people, n_top_actors, n_guy_jobs = _compute_stats()
+    # print()
+    # print(f"{n_triples:,} (n_triples)")
+    # print(f"{n_people:,} (n_people)")
+    # print(f"{n_top_actors} (n_top_actors)")
+    # print(f"{n_guy_jobs} (n_guy_jobs)")
+    s, p ,o = _compute_stats()
     print()
-    print(f"{n_triples:,} (n_triples)")
-    print(f"{n_people:,} (n_people)")
-    print(f"{n_top_actors} (n_top_actors)")
-    print(f"{n_guy_jobs} (n_guy_jobs)")
+    print(f"{s} (s)")
+    print(f"{p} (p)")
+    print(f"{o} (o)")
