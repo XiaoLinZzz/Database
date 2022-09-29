@@ -73,24 +73,23 @@ def _parse_line(line):
 
 def _compute_stats():
     # ... you can add variables here ...
-    s_set = set()
-    p_set = set()
-    o_set = set()
+    set_spo = set()
     
-    
+    dict = {}
     # open file and read it line by line
     # assume utf8 encoding, ignore non-parseable characters
     with open(data_file, encoding="utf8", errors="ignore") as f:
         for line in f:
             # get subject, predicate and object
             s, p, o = _parse_line(line)
-            s_set.add(s)
-            p_set.add(p)
-            o_set.add(o)
+            set_spo.add((s, p, o))
             
-    s = len(s_set)
-    p = len(p_set)
-    o = len(o_set)
+            # if 
+        
+    return set_spo
+                
+                
+            
     ###########################################################
     # ... your code here ...
     # you can add functions and variables as needed;
@@ -115,7 +114,7 @@ def _compute_stats():
     ###########################################################
     
     
-    return s, p, o
+    # return s, p, o
     # return n_triples, n_people, n_top_actors, n_guy_jobs
 
     
@@ -126,8 +125,6 @@ if __name__ == "__main__":
     # print(f"{n_people:,} (n_people)")
     # print(f"{n_top_actors} (n_top_actors)")
     # print(f"{n_guy_jobs} (n_guy_jobs)")
-    s, p ,o = _compute_stats()
-    print()
-    print(f"{s} (s)")
-    print(f"{p} (p)")
-    print(f"{o} (o)")
+    
+    s = _compute_stats()
+    print(s)
