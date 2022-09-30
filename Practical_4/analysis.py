@@ -1,3 +1,6 @@
+from sympy import N
+
+
 data_file = "Practical_4/movies.nt"
 language_tag = "@en-US"
 line_ending = " ."
@@ -74,7 +77,7 @@ def _parse_line(line):
 def _compute_stats():
     # ... you can add variables here ...
     set_spo = set()
-    
+    n_guy_jobs = 0
     dict = {}
     # open file and read it line by line
     # assume utf8 encoding, ignore non-parseable characters
@@ -84,9 +87,29 @@ def _compute_stats():
             s, p, o = _parse_line(line)
             set_spo.add((s, p, o))
             
-            # if 
+            if o == uri_person and p == predicate_has_type:
+                if s not in dict:
+                    dict[s] = 1
+                else:
+                    dict[s] += 1
+                    
+            if s == query_person_name:
+                if p not in dict:
+                    dict[p] = 1
+                else:
+                    dict[p] += 1
+                    
+            if p == predicate_has_actor:
+                if o not in dict:
+                    dict[o] = 1
+                else:
+                    dict[o] += 1
+                    
+
+    n_triples = len(set_spo)
+    n_people = len(dict)
         
-    return set_spo
+    # return set_spo
                 
                 
             
@@ -115,16 +138,16 @@ def _compute_stats():
     
     
     # return s, p, o
-    # return n_triples, n_people, n_top_actors, n_guy_jobs
+    return n_triples, n_people, n_top_actors, n_guy_jobs
 
     
 if __name__ == "__main__":
-    # n_triples, n_people, n_top_actors, n_guy_jobs = _compute_stats()
-    # print()
-    # print(f"{n_triples:,} (n_triples)")
-    # print(f"{n_people:,} (n_people)")
-    # print(f"{n_top_actors} (n_top_actors)")
-    # print(f"{n_guy_jobs} (n_guy_jobs)")
+    n_triples, n_people, n_top_actors, n_guy_jobs = _compute_stats()
+    print()
+    print(f"{n_triples:,} (n_triples)")
+    print(f"{n_people:,} (n_people)")
+    print(f"{n_top_actors} (n_top_actors)")
+    print(f"{n_guy_jobs} (n_guy_jobs)")
     
-    s = _compute_stats()
-    print(s)
+    # s = _compute_stats()
+    # print(s)
