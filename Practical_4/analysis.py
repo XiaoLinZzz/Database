@@ -1,6 +1,3 @@
-from sympy import N
-
-
 data_file = "Practical_4/movies.nt"
 language_tag = "@en-US"
 line_ending = " ."
