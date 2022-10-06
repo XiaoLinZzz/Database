@@ -1,11 +1,7 @@
-<<<<<<< HEAD
 data_file = "Practical_4/movies.nt"
-=======
-from sympy import N
 
+data_file = "Practical_4/movies.nt"
 
-data_file = "/Users/Uni Course/Database/Practical_4/movies.nt"
->>>>>>> 98d86f161694d95c282fb9f4eb747334707e3657
 language_tag = "@en-US"
 line_ending = " ."
 query_person_name = "\"Guy Ritchie\""
