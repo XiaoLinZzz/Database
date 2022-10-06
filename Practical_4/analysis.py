@@ -129,18 +129,6 @@ def _compute_stats():
     
     n_guy_jobs = len(query_person_set)
                 
-                
-            
-    ###########################################################
-    # ... your code here ...
-    # you can add functions and variables as needed;
-    # however, do NOT remove or modify existing code;
-    # _compute_stats() must return four values as described;
-    # you can add print statements if you like, but only the
-    # last four printed lines will be assessed;
-    ###########################################################
-    
-    
     
     ###########################################################
     # n_triples -- number of distinct triples
