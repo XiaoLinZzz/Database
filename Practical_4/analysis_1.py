@@ -1,4 +1,4 @@
-data_file = "Practical_4/movies.nt"
+data_file = "/Users/Uni Course/Database/Practical_4/movies.nt"
 language_tag = "@en-US"
 line_ending = " ."
 query_person_name = "\"Guy Ritchie\""
