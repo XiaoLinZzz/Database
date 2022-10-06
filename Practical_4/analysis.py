@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 data_file = "Practical_4/movies.nt"
+=======
+from sympy import N
+
+
+data_file = "/Users/Uni Course/Database/Practical_4/movies.nt"
+>>>>>>> 98d86f161694d95c282fb9f4eb747334707e3657
 language_tag = "@en-US"
 line_ending = " ."
 query_person_name = "\"Guy Ritchie\""
@@ -75,6 +82,9 @@ def _compute_stats():
     # ... you can add variables here ...
     set_spo = set()
     n_guy_jobs = 0
+    n_top_actors = 0
+    node = ""
+    query_person_set = set()
     dict = {}
     # open file and read it line by line
     # assume utf8 encoding, ignore non-parseable characters
@@ -90,23 +100,38 @@ def _compute_stats():
                 else:
                     dict[s] += 1
                     
-            if s == query_person_name:
-                if p not in dict:
-                    dict[p] = 1
-                else:
-                    dict[p] += 1
-                    
             if p == predicate_has_actor:
                 if o not in dict:
                     dict[o] = 1
                 else:
                     dict[o] += 1
                     
+            if o == query_person_name:
+                node = s
+                
+        if node != "":
+            with open(data_file, encoding="utf8", errors="ignore") as f:
+                for line in f:
+                    # get subject, predicate and object
+                    s, p, o = _parse_line(line)
+                    
+                    if o == node and p.startswith(predicate_prefix):
+                        job = p.split("/")[-1]
+                        query_person_set.add(job)
 
     n_triples = len(set_spo)
     n_people = len(dict)
         
-    # return set_spo
+    count = 0
+    for key, value in dict.items():
+        if value > count:
+            count = value
+            node = key
+    for key, value in dict.items():
+        if value == count:
+            n_top_actors += 1
+    
+    n_guy_jobs = len(query_person_set)
                 
                 
             
