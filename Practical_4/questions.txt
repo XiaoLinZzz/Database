@@ -3,7 +3,7 @@ Q1: Review data in "tmdb-5000.zip". You can open .csv files using Microsoft Exce
 Which normal form is it in? Justify your answer.
 
 -----------------------------------
-... your answer here ...
+Not belongs to any form, even not satisfy with 1NF. Cast has more than 1 value.
 -----------------------------------
 
 Q2: Consider "tmdb_5000_movies.csv", and suppose that it only had two columns: id and genres. Assume that there are no other columns or tables.
@@ -11,7 +11,9 @@ Q2: Consider "tmdb_5000_movies.csv", and suppose that it only had two columns: i
 How can you restructure such data so that it is in the 3NF? Justify your answer.
 
 -----------------------------------
-... your answer here ...
+Create a new table with genres id & name.
+Create a new table with Keywords id & name.
+Create a new table with Production_companies id & name.
 -----------------------------------
 
 Q3: Review data in "movies.nt". You can use any text editor to open this file. You don't have to use Python scripts for this question. You can just use search in a text editor.
@@ -19,7 +21,10 @@ Q3: Review data in "movies.nt". You can use any text editor to open this file. Y
 List all genre names (e.g., Action, Comedy, etc.) for movie represented with blank node _:m_99861.
 
 -----------------------------------
-... your answer here ...
+All names below
+Action
+Adventure
+Science Fiction
 -----------------------------------
 
 Q4: Consider the following sentence: "Canberra is a capital of Australia" (you knew that, right?). Encode this information in N-Triples format. Appropriately use blank nodes, URIs and string literals. Note that the sentence has some implied information that also needs to be included (e.g., what is Australia).
