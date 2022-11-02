@@ -1,0 +1,17 @@
+Q1: Consider guessing a four digit password using brute force. Suppose it takes 10 ms on a modern computer to try all combinations (i.e., 0000, 0001, 0002, ... , 9999). Now, suppose that the password has 10 characters and can contain lowercase English letters, uppercase English letters and digits. How long will it take on the same computer to try all such passwords? Explain your answer. For this question, assume that the password will NOT contain special characters (e.g., it does NOT contain symbols such as '@' or '$').
+
+-----------------------------------
+... your answer here ...
+-----------------------------------
+
+Q2: Suppose hackers get their hands on "users.data" and also "messages_*.data" files for each user. Clearly, the hackers will now have a list of users in the system. What other information can the hackers learn from these files? Explain your answer. You might want to experiment with the system to answer this question.
+
+-----------------------------------
+... your answer here ...
+-----------------------------------
+
+Q3: Suppose that a user of our system forgot their password, and the admin (root) has created a new password for them. The user is now able to login again. Are there any major issues remain for this user? Explain your answer.
+
+-----------------------------------
+... your answer here ...
+-----------------------------------
