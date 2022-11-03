@@ -2,7 +2,7 @@
 # do NOT modify code outside of the functions
 from crypto_utils import get_string_hash
 from crypto_utils import CryptoTool
-
+import os
 
 PASSWORDS_FILE = "users.data"
 USER_NAME = "bob"
@@ -19,6 +19,17 @@ def _read_user_hash(password_file_name, u_name):
         e.g., file not found or user not found
     '''
     # ... your code here ...
+    if password_file_name in os.listdir():
+        file = open(password_file_name, "r")
+        for lines in file.readlines():
+            info = lines.strip().split(",")
+            
+        if info[0] == u_name:
+            return info[1]          # return password hash
+        else:
+            return "user not found"
+    else:
+        return "file not found"
 
 def _guess_password(h):
     '''
@@ -28,6 +39,11 @@ def _guess_password(h):
     return None if no such password found
     '''
     # ... your code here ...
+    i = 0000
+    while i < 10000:
+        if get_string_hash(str(i)) == h:
+            return str(i)
+        i += 1
 
 def _recover_message(messages_file_name, password):
     '''
@@ -38,7 +54,18 @@ def _recover_message(messages_file_name, password):
         e.g., no messages, file not found, etc.
     '''
     # ... your code here ...
-
+    if messages_file_name in os.listdir():
+        file = open(messages_file_name, "rb")
+        for info in file.readlines():
+            # decrypt the message
+            decrypt_password = CryptoTool(password)
+            decrypt_message = decrypt_password.decrypt(info)
+            
+            # return as a string
+            for message in decrypt_message:
+                return message
+    
+    
 if __name__ == "__main__":
     h = _read_user_hash(PASSWORDS_FILE, USER_NAME)
     password = _guess_password(h)

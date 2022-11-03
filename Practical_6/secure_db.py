@@ -57,6 +57,13 @@ def _is_strong_password(password):
     - it contains at least one of these three special characters: $, @, #
     '''
     # ... your code here ...
+    if len(password) >= 8:
+        if any(char.islower() for char in password):
+            if any(char.isupper() for char in password):
+                if any(char.isdigit() for char in password):
+                    if any(char in "$@#" for char in password):
+                        return True
+    
     return False  # <-- remove this line if you don't need it
 
 #############################################################
@@ -68,7 +75,8 @@ def _create_root_account():
     print("You need to create root password.")
     u_hash = _enter_new_password()
     with open(PASSWORDS_FILE, 'w') as f:
-        f.write(f"root,{u_hash}\n")
+        f.write(f"root,{get_string_hash(u_hash)}\n")
+        # f.write(f"root,{u_hash}\n")
     print("Root account has been created.")
 
 def _load_user_info():
@@ -89,7 +97,8 @@ def _attempt_login(user_info):
     if u_name not in user_info:
         return None, None
     
-    entered_hash = u_pass
+    entered_hash = get_string_hash(u_pass)
+    # entered_hash = u_pass
     stored_hash = user_info[u_name]
     
     if entered_hash != stored_hash:

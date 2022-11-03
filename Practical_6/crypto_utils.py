@@ -19,7 +19,7 @@ def get_string_hash(s):
     return hashlib.sha224(s.encode()).hexdigest()
     
     
-class CryptoTool:
+class CryptoTool:   
     # encryption/decryption will be specific to the password
     # (encryption/decryption key will be based on the password)
     def __init__(self, password):
