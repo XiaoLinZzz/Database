@@ -59,10 +59,10 @@ def _recover_message(messages_file_name, password):
         for info in file.readlines():
             # decrypt the message
             decrypt_password = CryptoTool(password)
-            decrypt_message = decrypt_password.decrypt(info)
+            decrypt_messages = decrypt_password.decrypt(info)
             
-            # return as a string
-            for message in decrypt_message:
+            # return first message
+            for message in decrypt_messages:
                 return message
     
     
