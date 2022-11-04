@@ -2,16 +2,23 @@ Q1: Consider guessing a four digit password using brute force. Suppose it takes 
 
 -----------------------------------
 ... your answer here ...
+
+There are 26+26+10 combinations for 1 digit. So, the number of all combinations are （26+26+10)^10.
+Thus, we can get the total time should be（(26+26+10)^10/10000)*10 = 839299365868340.1 ms
 -----------------------------------
 
 Q2: Suppose hackers get their hands on "users.data" and also "messages_*.data" files for each user. Clearly, the hackers will now have a list of users in the system. What other information can the hackers learn from these files? Explain your answer. You might want to experiment with the system to answer this question.
 
 -----------------------------------
 ... your answer here ...
+
+Hacker also can read the users messages.
 -----------------------------------
 
 Q3: Suppose that a user of our system forgot their password, and the admin (root) has created a new password for them. The user is now able to login again. Are there any major issues remain for this user? Explain your answer.
 
 -----------------------------------
 ... your answer here ...
+
+If the admin created a new password, the users may lost their message. Because the message is encryption with the previous password, if admin change the password, the message will be decrypted by current password (not same as previous). It may makes the message unable to read.
 -----------------------------------
